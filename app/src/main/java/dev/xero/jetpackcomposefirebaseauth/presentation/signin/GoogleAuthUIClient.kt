@@ -6,6 +6,7 @@ import android.content.IntentSender
 import com.google.android.gms.auth.api.identity.BeginSignInRequest
 import com.google.android.gms.auth.api.identity.BeginSignInRequest.GoogleIdTokenRequestOptions
 import com.google.android.gms.auth.api.identity.SignInClient
+import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import dev.xero.jetpackcomposefirebaseauth.R
@@ -29,6 +30,32 @@ class GoogleAuthUIClient (
 			null
 		}
 		return result?.pendingIntent?.intentSender
+	}
+
+	suspend fun signInWithIntent(intent: Intent): SignInResult {
+		val credential = oneTapClient.getSignInCredentialFromIntent(intent)
+		val googleIDToken = credential.googleIdToken
+		val googleCredentials = GoogleAuthProvider.getCredential(googleIDToken, null)
+		return try {
+			val user = auth.signInWithCredential(googleCredentials).await().user
+			SignInResult (
+				data = user?.run {
+					UserData (
+						userID = uid,
+						username = displayName,
+						profilePictureURL = photoUrl?.toString()
+					)
+				},
+				errorMsg = null
+			)
+		} catch (e: Exception) {
+			e.printStackTrace()
+			if (e is CancellationException) throw e
+			SignInResult(
+				data = null,
+				errorMsg = e.message
+			)
+		}
 	}
 
 	private fun buildSignInRequest(): BeginSignInRequest {
