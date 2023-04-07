@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Jetpack Compose Firebase Auth</string>
+    <string name="default_web_client_id">1014462776726-nfeec2qm7u58vt7fb7msdad3qne9dqgg.apps.googleusercontent.com</string>
 </resources>
