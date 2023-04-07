@@ -68,6 +68,14 @@ class GoogleAuthUIClient (
 		}
 	}
 
+	fun getSignedInUser(): UserData? = auth.currentUser?.run {
+		UserData (
+			userID = uid,
+			username = displayName,
+			profilePictureURL = photoUrl?.toString()
+		)
+	}
+
 	private fun buildSignInRequest(): BeginSignInRequest {
 		return BeginSignInRequest.Builder()
 			.setGoogleIdTokenRequestOptions(
