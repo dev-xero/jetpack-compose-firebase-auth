@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1014462776726",
+    "project_id": "jetpack-compose-firebase-auth",
+    "storage_bucket": "jetpack-compose-firebase-auth.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1014462776726:android:09261285e15874a9e949b7",
+        "android_client_info": {
+          "package_name": "dev.xero.jetpackcomposefirebaseauth"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1014462776726-cfv08br11ufs2qldavt2h7210o1tgp43.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJGB0xW5vCkoZhwagWDyoJw7UReHMnICo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1014462776726-cfv08br11ufs2qldavt2h7210o1tgp43.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
