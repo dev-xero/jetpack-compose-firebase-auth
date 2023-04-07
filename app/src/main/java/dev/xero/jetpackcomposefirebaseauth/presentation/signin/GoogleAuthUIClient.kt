@@ -58,6 +58,16 @@ class GoogleAuthUIClient (
 		}
 	}
 
+	suspend fun signOut() {
+		try {
+			oneTapClient.signOut().await()
+			auth.signOut()
+		} catch (e: Exception) {
+			e.printStackTrace()
+			if (e is CancellationException) throw e
+		}
+	}
+
 	private fun buildSignInRequest(): BeginSignInRequest {
 		return BeginSignInRequest.Builder()
 			.setGoogleIdTokenRequestOptions(
